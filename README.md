@@ -180,7 +180,9 @@ Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
 You have now successfully set up Prometheus, Grafana, and cAdvisor in Docker containers to collect and visualize container metrics. Prometheus is scraping metrics from cAdvisor, and Grafana is displaying them in a dashboard for easy monitoring.
 
 
-## Install loki
+## Install loki and promql
+
+**SITE LINK: https://muditmathur121.medium.com/sending-docker-logs-to-grafana-b8d30f88290a**
       
       Download the Loki Config file into your current directory.
      
