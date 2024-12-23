@@ -170,7 +170,7 @@ Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
   
     
 
-## 11. OR Create a Dashboard in Grafana using dashboard ID
+## 11. OR Create a Dashboard in Grafana using dashboard ID(Recommended)
 
       Dash Board id_1: 893
       Dash Board id_2: 15331
