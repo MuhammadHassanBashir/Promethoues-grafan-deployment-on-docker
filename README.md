@@ -114,6 +114,16 @@ Now that Prometheus is scraping cAdvisor metrics, you can run queries to see the
 
     This query calculates the rate of CPU usage for each container over a 5-minute interval.
 
+    **Get information in human readable form like MBs OR GBs**
+    
+    For MBs  
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024  
+
+    For GIBs
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024 / 1024
+  
+      
+
 ## 10. Create a Dashboard in Grafana
 
 Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
@@ -133,6 +143,13 @@ Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
 
     Once you apply this query, Grafana will display a graph showing the CPU usage per container.
 
+## 11 OR Create a Dashboard in Grafana using dashboard ID
+
+      Dash Board id_1: 893
+      Dash Board id_2: 15331
+
 ## Conclusion
 
 You have now successfully set up Prometheus, Grafana, and cAdvisor in Docker containers to collect and visualize container metrics. Prometheus is scraping metrics from cAdvisor, and Grafana is displaying them in a dashboard for easy monitoring.
+
+
