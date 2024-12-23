@@ -180,7 +180,7 @@ Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
 You have now successfully set up Prometheus, Grafana, and cAdvisor in Docker containers to collect and visualize container metrics. Prometheus is scraping metrics from cAdvisor, and Grafana is displaying them in a dashboard for easy monitoring.
 
 
-## Install loki and promql
+## Install loki and promtail
 
 **SITE LINK: https://muditmathur121.medium.com/sending-docker-logs-to-grafana-b8d30f88290a**
       
@@ -197,3 +197,29 @@ You have now successfully set up Prometheus, Grafana, and cAdvisor in Docker con
       http://<public_ipV4>:3100/metrics   
 
       if you run loki as container on local host, then use **localhost:3100/metrics** on browser or if you run loki as container on ec2 instance the open port of 3100 from SG and the use **http://<public_ipV4>:3100/metrics** on browser and you will see the metrics scraping by loki..       
+
+## Download promtail file
+
+      Download the promql Config file into your current directory.
+
+      wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
+
+## Run promtail container on the same directory where you download the promtail file
+
+  docker run -d --name promtail -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 --config.file=/mnt/config/promtail-config.yaml
+
+## Now add loki as data source in grafana
+
+      - login grafana
+      - click on data source
+      - add loki container ip like **http://172.17.0.5:3100**
+      - Click on “Save and Test”. You will get a prompt saying “Data Source Successfully Connted” so you can conclude that your connection to Grafana using Loki and Promtail is successful.
+      - Now click on Explore to create metrics.
+
+      In Explore> logs. We will create metrics that will show logs containing Docker in it.
+        
+        Name -> System Generated Logs
+        Label Filters -> jobs, varlogs
+        Line Contains -> docker
+
+       and click on show logs, and it will show the entire logs..
