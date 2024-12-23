@@ -121,6 +121,15 @@ Now that Prometheus is scraping cAdvisor metrics, you can run queries to see the
 
     For GIBs
     sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024 / 1024
+
+    For Memory
+    ----------
+    For MBs 
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024
+
+    For GIBs
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024 / 1024
+  
   
       
 
@@ -143,7 +152,25 @@ Finally, let's create a Grafana dashboard to visualize the cAdvisor metrics.
 
     Once you apply this query, Grafana will display a graph showing the CPU usage per container.
 
-## 11 OR Create a Dashboard in Grafana using dashboard ID
+    **Get information in human readable form like MBs OR GBs**
+    
+    For MBs  
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024  
+
+    For GIBs
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024 / 1024
+
+    For Memory
+    ----------
+    For MBs 
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024
+
+    For GIBs
+    sum(container_memory_usage_bytes{image!=""}) by (name) / 1024 / 1024 / 1024
+  
+    
+
+## 11. OR Create a Dashboard in Grafana using dashboard ID
 
       Dash Board id_1: 893
       Dash Board id_2: 15331
